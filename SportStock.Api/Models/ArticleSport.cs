@@ -9,7 +9,7 @@ public abstract class ArticleSport{
     public Categorie? Categorie { get; protected set; }
 
     //OneToOne Un article a un emplacement de stock
-    public EmplacementStock? EmplacementStock { get; set; }
+    public EmplacementStock? EmplacementStock { get; protected set; }
 
     //ManytoMany Un article peut être fourni par plusieurs fournisseurs et un fournisseur peut fournir plusieurs articles
     public ICollection<Fournisseur> Fournisseurs { get; protected set; } = new List<Fournisseur>();
