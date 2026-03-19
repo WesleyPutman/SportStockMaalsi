@@ -4,8 +4,9 @@ using SportStock.Api.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddControllers(); // Ajout des contrôleurs
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(); // Configuration de Swagger/OpenAPI
 
 // Ajout de la configuration de la base de données PostgreSQL
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -16,10 +17,13 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI(); // Active l'interface graphique Swagger
 }
 
 app.UseHttpsRedirection();
+
+app.MapControllers(); // Active les routes des contrôleurs
 
 var summaries = new[]
 {
