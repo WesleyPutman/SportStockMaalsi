@@ -13,7 +13,7 @@ namespace SportStock.Api.Data{
 
         protected override void OnModelCreating(ModelBuilder modelBuilder){
             modelBuilder.Entity<ArticleSport>()
-                .HasOne(a => a.Fournisseurs)
+                .HasOne(a => a.EmplacementStock)
                 .WithOne(e => e.Article)
                 .HasForeignKey<EmplacementStock>(e => e.ArticleSportId);
             modelBuilder.Entity<ArticleSport>()
