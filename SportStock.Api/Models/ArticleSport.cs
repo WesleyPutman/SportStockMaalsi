@@ -1,3 +1,5 @@
+namespace SportStock.Api.Models;
+
 public abstract class ArticleSport{
     public int Id { get; protected set; }
     public string Nom { get; protected set; }

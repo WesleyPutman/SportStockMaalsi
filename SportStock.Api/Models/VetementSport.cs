@@ -1,3 +1,5 @@
+namespace SportStock.Api.Models;
+
 public class VetementSport : ArticleSport{
     public string Taille { get; private set; }
     public string Matiere { get; private set; }

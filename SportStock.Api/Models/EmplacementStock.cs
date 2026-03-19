@@ -1,3 +1,5 @@
+namespace SportStock.Api.Models;
+
 public class EmplacementStock{
     public int Id { get; set; }
     public string Zone { get; set; } = string.Empty;
