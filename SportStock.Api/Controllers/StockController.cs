@@ -27,6 +27,15 @@ public class StockController : ControllerBase
         return Ok(articles);
     }
 
+    [HttpPost("categorie/{nom}")]
+    public async Task<IActionResult> CreerCategorie(string nom){
+        var categorie = new Categorie { Nom = nom };
+        _context.Categories.Add(categorie);
+        await _context.SaveChangesAsync();
+        return Ok(categorie);
+    }
+
+
     [HttpPost("vetement")]
     public async Task<IActionResult> AjouterVetement([FromBody] CreateVetementDto dto)
     {
@@ -82,6 +91,36 @@ public class StockController : ControllerBase
         _context.Emplacements.Add(emplacement);
         await _context.SaveChangesAsync();
         return Ok(emplacement);
+    }
+
+    [HttpPost("fournisseur/{nomSociete}")]
+    public async Task<IActionResult> CreerFournisseur(string nomSociete){
+        var fournisseur = new Fournisseur { NomSociete = nomSociete };
+        _context.Fournisseurs.Add(fournisseur);
+        await _context.SaveChangesAsync();
+        return Ok(fournisseur);
+    }
+
+    [HttpPost("{articleId}/fournisseur/{fournisseurId}")]
+    public async Task<IActionResult> LierFournisseur(int articleId, int fournisseurId){
+        var article = await _context.Articles
+            .Include(a => a.Fournisseurs)
+            .FirstOrDefaultAsync(a => a.Id == articleId);
+
+        if (article == null) return NotFound("Article non trouvé");
+
+        var fournisseur = await _context.Fournisseurs.FindAsync(fournisseurId);
+        if (fournisseur == null) return NotFound("Fournisseur non trouvé");
+
+        if (!article.Fournisseurs.Any(f => f.Id == fournisseurId))
+        {
+            article.Fournisseurs.Add(fournisseur);
+            await _context.SaveChangesAsync();
+        }
+
+        return Ok(new { 
+            Message = $"Le fournisseur '{fournisseur.NomSociete}' a bien été lié à l'article '{article.Nom}'" 
+        });
     }
 
     public class EmplacementDto

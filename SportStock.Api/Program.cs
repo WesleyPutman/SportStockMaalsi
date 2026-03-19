@@ -1,12 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using SportStock.Api.Data;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllers(); // Ajout des contrôleurs
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    });
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(); // Configuration de Swagger/OpenAPI
+builder.Services.AddSwaggerGen();
 
 // Ajout de la configuration de la base de données PostgreSQL
 builder.Services.AddDbContext<AppDbContext>(options =>
