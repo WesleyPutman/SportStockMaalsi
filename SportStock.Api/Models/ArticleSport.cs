@@ -7,7 +7,7 @@ public abstract class ArticleSport{
     public int QuantiteEnStock { get; protected set; }
 
     //ManytoOne Une catégorie peut avoir plusieurs articles
-    public int CategorieId { get; protected set; }
+    public int CategorieId { get; set; }
     public Categorie? Categorie { get; protected set; }
 
     //OneToOne Un article a un emplacement de stock
