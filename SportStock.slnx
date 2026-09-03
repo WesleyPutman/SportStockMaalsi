@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="SportStock.Api/SportStock.Api.csproj" />
+  <Project Path="SportStock.Tests/SportStock.Tests.csproj" />
+</Solution>
