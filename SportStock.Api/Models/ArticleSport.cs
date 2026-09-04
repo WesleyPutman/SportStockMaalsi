@@ -23,6 +23,9 @@ public abstract class ArticleSport{
     }
 
     public void AjouterStock(int quantite){
-        if(quantite > 0) QuantiteEnStock += quantite;
+		if(quantite <= 0){
+		throw new ArgumentOutOfRangeException(nameof(quantite), "Vous devez indiquer une valeur positive");
+		}
+        QuantiteEnStock += quantite;
     }
 }
