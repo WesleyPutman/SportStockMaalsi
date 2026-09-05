@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SportStock.Api.Data;
 using System.Text.Json.Serialization;
+using SportStock.Api.Errors;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,8 +18,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddExceptionHandler<ArgumentOutOfRangeExceptionHandler>();
+builder.Services.AddProblemDetails();
 var app = builder.Build();
-
+app.UseExceptionHandler();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
