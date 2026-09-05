@@ -1,6 +1,31 @@
-@SportStock.Api_HostAddress = http://localhost:5188
+### 1. L'API répond ?
+GET http://localhost:5188/api/stock
 
-GET {{SportStock.Api_HostAddress}}/weatherforecast/
-Accept: application/json
+### 2. Créer une catégorie
+POST http://localhost:5188/api/stock/categorie/Test
 
-###
+### 3. Créer un vêtement (mets l'Id renvoyé en 2 dans categorieId)
+POST http://localhost:5188/api/stock/vetement
+Content-Type: application/json
+
+{
+  "nom": "T-shirt",
+  "prix": 19.99,
+  "categorieId": 1,
+  "taille": "M",
+  "matiere": "coton",
+  "couleur": "noir",
+  "genre": "homme"
+}
+
+### 4. Réception invalide → doit répondre 400
+PUT http://localhost:5188/api/stock/1/reception
+Content-Type: application/json
+
+-100
+
+### 5. Réception valide → doit répondre 200
+PUT http://localhost:5188/api/stock/1/reception
+Content-Type: application/json
+
+50
