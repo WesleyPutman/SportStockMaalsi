@@ -10,7 +10,7 @@ public class ArgumentOutOfRangeExceptionHandler : IExceptionHandler
         Exception exception,
         CancellationToken ct)
     {
-        if (exception is not InvalidOperationException)
+        if (exception is not ArgumentOutOfRangeException)
         {
             return false;
         }
