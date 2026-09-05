@@ -8,7 +8,7 @@ API de gestion de stock pour articles de sport, construite avec .NET 8, Entity F
 
 Avant de commencer sur un nouveau PC, assure-toi d'avoir installé :
 
-1.  **[.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)**
+1.  **[.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)**
 2.  **[Docker Desktop](https://www.docker.com/products/docker-desktop/)** (obligatoire pour la base de données)
 3.  **[Git](https://git-scm.com/)**
 
