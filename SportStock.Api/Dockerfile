@@ -1,5 +1,5 @@
 # Étape 1 : Build de l'application
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
 # Copie du fichier projet et restauration des dépendances
@@ -11,7 +11,7 @@ COPY . .
 RUN dotnet publish "SportStock.Api.csproj" -c Release -o /app/publish
 
 # Étape 2 : Image finale (allégée pour la production)
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
 WORKDIR /app
 COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "SportStock.Api.dll"]
