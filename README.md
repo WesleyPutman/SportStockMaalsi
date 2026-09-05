@@ -1,4 +1,6 @@
-# SportStock API 
+![CI](https://github.com/WesleyPutman/SportStockMaalsi/actions/workflows/ci.yml/badge.svg)
+#
+ SportStock API 
 
 API de gestion de stock pour articles de sport, construite avec .NET 8, Entity Framework Core et PostgreSQL (Docker).
 
